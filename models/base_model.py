@@ -13,12 +13,15 @@ class BaseModel():
         print(self.created_at)
 
     def __str__(self):
+        """ string representation of Base Model object """
         return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
 
     def save(self):
+        """ Update attriubte updated_at """
         self.updated_at = datetime.datetime.now()
 
     def to_dict(self):
+        """ Return dictionary representation of object """
         tdn = self.__dict__
         format_time = {
             "updated_at": tdn['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f"), # replace .strftime with isoformat()
