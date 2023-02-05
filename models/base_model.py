@@ -19,8 +19,8 @@ class BaseModel():
     def to_dict(self):
         tdn = self.__dict__
         format_time = {
-            "updated_at": tdn['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f"), 
-            "created_at": tdn['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
+            "updated_at": tdn['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f"), # replace .strftime with isoformat()
+            "created_at": tdn['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f") # replace .strftime with isoformat()
         }
         tdn.update(format_time)
         tdn.update({"__class__": type(self).__name__})
