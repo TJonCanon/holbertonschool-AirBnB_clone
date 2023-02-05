@@ -1,27 +1,50 @@
 #!/usr/bin/python3
 """ Base Model module """
 import uuid
-import datetime
-class BaseModel():
+from datetime import datetime
+import models
+
+
+class BaseModel:
     """ Base Model Class """
-    def __init__(self):
-        """ Initialize Base Model Object """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = self.created_at
-        print(self.created_at)
+
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize data object
+        """
+        fmt = "%Y-%m-%dT%H:%M:%S.%f"
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key in ["created_at", "updated_at"]:
+                        setattr(self, key, datetime.strptime(value, fmt))
+                    else:
+                        setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.updated_at = self.created_at = datetime.now()
+            models.storage.new(self)
+
     def __str__(self):
-        return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
+        """
+        String representation of data object
+        """
+        return ("[{}] ({}) {}".format(
+            type(self).__name__, self.id, self.__dict__))
 
     def save(self):
-        self.updated_at = datetime.datetime.now()
+        """
+        Update attribute updated_at and saves the data object
+        """
+        self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
-        tdn = self.__dict__
-        format_time = {
-            "updated_at": tdn['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f"), # replace .strftime with isoformat()
-            "created_at": tdn['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f") # replace .strftime with isoformat()
-        }
-        tdn.update(format_time)
-        tdn.update({"__class__": type(self).__name__})
-        return tdn
+        """
+        Return dictionary representation of object
+        """
+        my_dict = self.__dict__.copy()
+        my_dict.update({"updated_at": self.updated_at.isoformat()})
+        my_dict.update({"created_at": self.created_at.isoformat()})
+        my_dict.update({"__class__": type(self).__name__})
+        return my_dict
