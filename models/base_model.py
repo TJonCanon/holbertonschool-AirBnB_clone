@@ -14,9 +14,11 @@ class BaseModel():
                     else:
                         setattr(self, key, value)
         
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = self.created_at
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = self.created_at
+            models.storage.new(self)
 
     def __str__(self):
         """ string representation of Base Model object """
