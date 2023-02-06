@@ -1,23 +1,22 @@
 #!/usr/bin/python3
 """ Base Model module """
 import uuid
-import datetime
+from datetime import datetime
 class BaseModel():
     """ Base Model Class """
     def __init__(self, *args, **kwargs):
         """ Initialize Base Model Object """
         if kwargs:
-            for key, value in kwargs.items():
-                if key != "__class__":
-                    if key in ["created_at", "updated_at"]:
-                        setattr(self, key, datetime.strptime(value, fmt))
-                    else:
-                        setattr(self, key, value)
+             fmt = "%Y-%m-%dT%H:%M:%S.%f"
+             for key, value in kwargs.items():
+                 if key is not "__class__":
+                     self.__dict__.update({key: value})
+                 if key in ["created_at", "updated_at"]:
+                     self.__dict__.update({key: datetime.strptime(value, fmt)})
         
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.now()
-            self.updated_at = self.created_at
+            self.updated_at = self.created_at = datetime.now()
 
     def __str__(self):
         """ string representation of Base Model object """
