@@ -18,6 +18,11 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.updated_at = self.created_at = datetime.now()
 
+    def str_to_dt_obj(self, sr):
+         print(" year = " + sr[0:4])
+         print(" month = " + sr[5:6])
+         print(" day = " + sr[7:8])
+
     def __str__(self):
         """ string representation of Base Model object """
         return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
