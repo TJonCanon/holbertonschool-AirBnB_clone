@@ -31,7 +31,4 @@ class FileStorage:
         """ reload data from __file_path, recreate into __objects """
         if exists(self.__file_path):
             with open(self.__file_path, "r") as file_path:
-                reloaded_dict = json.load(file_path)
-
-                for obj_key in reloaded_dict.keys():
-                    self.new(BaseModel(**reloaded_dict[obj_key]))
+                self.__objects = json.load(file_path)

@@ -3,6 +3,8 @@
 import uuid
 from datetime import datetime
 import models
+from .__init__ import storage
+
 class BaseModel:
     """ Base Model Class """
     def __init__(self, *args, **kwargs):
@@ -18,7 +20,8 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.updated_at = self.created_at = datetime.now()
-            models.storage.new(self)
+            storage.new(self)
+
     def __str__(self):
         """ string representation of Base Model object """
         return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
@@ -26,7 +29,8 @@ class BaseModel:
     def save(self):
         """ Update attriubte updated_at """
         self.updated_at = datetime.now()
-        models.storage.save
+        storage.save
+
     def to_dict(self):
         """ Returns a dictionary containing all keys/values of
         `__dict__` of the instance. """
