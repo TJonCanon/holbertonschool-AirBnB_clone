@@ -19,17 +19,18 @@ class BaseModel():
         self.updated_at = self.created_at
 
     def __str__(self):
+        """ string representation of Base Model object """
         return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
 
     def save(self):
+        """ Update attriubte updated_at """
         self.updated_at = datetime.datetime.now()
 
     def to_dict(self):
-        tdn = self.__dict__
-        format_time = {
-            "updated_at": tdn['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f"), # replace .strftime with isoformat()
-            "created_at": tdn['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f") # replace .strftime with isoformat()
-        }
-        tdn.update(format_time)
-        tdn.update({"__class__": type(self).__name__})
-        return tdn
+        """ Returns a dictionary containing all keys/values of
+        `__dict__` of the instance. """
+        myDict = self.__dict__.copy()
+        myDict['__class__'] = self.__class__.__name__
+        myDict['created_at'] = self.created_at.isoformat()
+        myDict['updated_at'] = self.updated_at.isoformat()
+        return myDict
