@@ -6,7 +6,6 @@ from ast import arg
 from models import storage
 valid_classes = {"BaseModel": BaseModel}
 
-
 class HBNBCommand(cmd.Cmd):
     """ Console Class """
     prompt = "(hbnb) "
