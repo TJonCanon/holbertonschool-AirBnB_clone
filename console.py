@@ -9,7 +9,7 @@ from models.state import State
 from models.review import Review
 from models.amenity import Amenity
 from models import storage
-from models.user import User
+from ast import arg
 valid_classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
                  "State": State, "City": City, "Amenity": Amenity,
                  "Review": Review}
@@ -89,16 +89,19 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """ print all instances """
-        if arg == "" or arg is None:
-            for key in storage.all().keys():
-                print(storage.all()[key])
-        elif arg in valid_classes.keys():
-            for key in storage.all().keys():
-                nameio = key.split('.')
-                if nameio[0] == arg:
-                    print(storage.all()[key])
+        if arg != "":
+            word = arg.split(' ')
+            if word[0] not in valid_classes.keys():
+                print("** class doesn't exist **")
+            else:
+                n = [
+                    str(obj) for key, obj in storage.all().items()
+                    if type(obj).__name__ == word[0]
+                ]
+                print(n)
         else:
-            print("** class doesn't exist **")
+            n = [str(obj) for key, obj in storage.all().items()]
+            print(n)
 
     def do_update(self, arg):
         """
