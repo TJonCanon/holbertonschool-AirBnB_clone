@@ -122,5 +122,4 @@ class HBNBCommand(cmd.Cmd):
                      setattr(storage.all()[valid_key], word[2], word[3].strip('\'"'))
 
 if __name__ == '__main__':
-    """yes"""
     HBNBCommand().cmdloop()
