@@ -2,9 +2,17 @@
 """ Console Module """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.amenity import Amenity
 from models import storage
 from models.user import User
-valid_classes = {"BaseModel": BaseModel, "User": User}
+valid_classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
+                 "State": State, "City": City, "Amenity": Amenity,
+                 "Review": Review}
 
 
 class HBNBCommand(cmd.Cmd):
