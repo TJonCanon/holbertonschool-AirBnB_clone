@@ -4,7 +4,7 @@ import cmd
 from models.base_model import BaseModel
 from ast import arg
 from models import storage
-valid_classes = {"BaseModel": BaseModel}
+valid_classes = {"BaseModel": BaseModel, "User": User, }
 
 
 class HBNBCommand(cmd.Cmd):
