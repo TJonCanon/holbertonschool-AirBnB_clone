@@ -9,7 +9,6 @@ from models.state import State
 from models.review import Review
 from models.amenity import Amenity
 from models import storage
-from ast import arg
 valid_classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
                  "State": State, "City": City, "Amenity": Amenity,
                  "Review": Review}
@@ -21,11 +20,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, line):
         """ Quit Command to exit the program """
-        return True
+        raise SystemExit
 
     def do_EOF(self, line):
         """ Handles EOF command """
-        return True
+        raise SystemExit
 
     def emptyline(self):
         """ does nothing on enter """
