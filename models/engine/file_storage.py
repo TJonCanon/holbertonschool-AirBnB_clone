@@ -41,6 +41,7 @@ class FileStorage:
         if exists(self.__file_path):
              with open(self.__file_path, "r") as file_path:
                  fulldict = json.load(file_path)
+
                  for obj_key in fulldict.keys():
                      class_name = obj_key.split('.')
-                     self.new(valid_classes[class_name[0](**fulldict[obj_key])])
+                     self.new(valid_classes[class_name[0]](**fulldict[obj_key]))
