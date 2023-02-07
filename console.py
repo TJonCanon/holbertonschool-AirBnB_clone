@@ -115,5 +115,5 @@ class HBNBCommand(cmd.Cmd):
                     setattr(storage.all()[valid_key], word[2], word[3])
 
 if __name__ == '__main__':
-    """ garbo world """
+    """yes"""
     HBNBCommand().cmdloop()
