@@ -3,7 +3,8 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
-valid_classes = {"BaseModel": BaseModel, "User": User, }
+from models.user import User
+valid_classes = {"BaseModel": BaseModel, "User": User}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -106,12 +107,9 @@ class HBNBCommand(cmd.Cmd):
                 if len(word) < 4:
                     print("** value missing **")
                     return False
-                my_dict = storage.all()[valid_key].to_dict()
-
-                if word[2] not in my_dict.keys():
-                    print("** value missing **")
-                elif valid_key in storage.all().keys():
-                    setattr(storage.all()[valid_key], word[2], word[3])
+                
+                if valid_key in storage.all().keys():
+                     setattr(storage.all()[valid_key], word[2], word[3].strip('\'"'))
 
 if __name__ == '__main__':
     """yes"""
