@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Console Module """
 import cmd
+import sys
 from models.base_model import BaseModel
 from models.user import User
 from models.city import City
@@ -22,9 +23,9 @@ class HBNBCommand(cmd.Cmd):
         """ Quit Command to exit the program """
         return True
 
-    def do_EOF(self, line):
+    def do_EOF(self, arg): 
         """ Handles EOF command """
-        raise SystemExit
+        return True
 
     def emptyline(self):
         """ does nothing on enter """
