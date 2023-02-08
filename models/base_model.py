@@ -35,10 +35,7 @@ class BaseModel:
         """ Returns a dictionary containing all keys/values of
         `__dict__` of the instance. """
         my_dict = self.__dict__.copy()
-        if type(my_dict["updated_at"]) is not str:
-             my_dict.update({"updated_at": self.updated_at.isoformat()})
-        if type(my_dict["created_at"]) is not str:
-             my_dict.update({"created_at": self.created_at.isoformat()})
-
+        my_dict.update({"updated_at": self.updated_at.isoformat()})
+        my_dict.update({"created_at": self.created_at.isoformat()})
         my_dict.update({"__class__": type(self).__name__})
         return my_dict
