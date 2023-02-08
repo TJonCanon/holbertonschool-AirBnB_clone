@@ -18,17 +18,17 @@ class HBNBCommand(cmd.Cmd):
     """ Console Class """
     prompt = "(hbnb) "
 
-    def do_quit(self, line):
+    def do_quit(self, arg):
         """ Quit Command to exit the program """
-        raise SystemExit
+        return True
 
-    def do_EOF(self, line):
+    def do_EOF(self, arg): 
         """ Handles EOF command """
-        raise SystemExit
+        return True
 
     def emptyline(self):
         """ does nothing on enter """
-        pass
+        return False
 
     def check_class(self, value):
         """ Check if:
