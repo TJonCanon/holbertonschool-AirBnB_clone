@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Console Module """
 import cmd
-import sys
 from models.base_model import BaseModel
 from models.user import User
 from models.city import City
@@ -29,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """ does nothing on enter """
-        pass
+        return False
 
     def check_class(self, value):
         """ Check if:
