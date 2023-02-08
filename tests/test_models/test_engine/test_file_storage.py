@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" unit testing for file storage """
+""" unit testing for file torage """
 import unittest
 from models.engine.file_storage import FileStorage
 import pep8
