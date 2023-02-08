@@ -8,10 +8,10 @@ class BaseModel:
     """ Base Model Class """
     def __init__(self, *args, **kwargs):
         """ Initialize Base Model Object """
+        fmt = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
-             fmt = "%Y-%m-%dT%H:%M:%S.%f"
-             for key, value in kwargs.items():
-                 if key != "__class__":
+            for key, value in kwargs.items():
+                if key != "__class__":
                     if key in ["created_at", "updated_at"]:
                         setattr(self, key, datetime.strptime(value, fmt))
                     else:
