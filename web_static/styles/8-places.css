@@ -1,0 +1,60 @@
+.places {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .places h1 {
+    font-size: 30px;
+  }
+  
+  .places h2 {
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .places #flex_title {
+    flex: 0 0 100%;
+  }
+  
+  .places article {
+    width: 290px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ff5a5f;
+    border-radius: 4px;
+  }
+  
+  .places .nightly {
+    color: #ff5a5f;
+    border: #ff5a5f 4px solid; /* should be rounded */
+    min-width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+  
+  .places .information {
+    height: 80px;
+    border-top: #ddd 1px solid;
+    border-bottom: #ddd 1px solid;
+  }
+  
+  .places .information .maxguest {
+    width: 100px;
+  }
+  
+  .places .information .number_rooms {
+    width: 100px;
+  }
+  
+  .places .information .number_bathrooms {
+    width: 100px;
+  }
+  
+  .places .user {
+    align-items: left;
+  }
+  
+  .places .description {
+    visibility: hidden;
+  }
